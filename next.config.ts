@@ -18,6 +18,16 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  // Vista previa fuera del dominio real: no indexar hasta fijar ALLOW_INDEXING=true
+  async headers() {
+    if (process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true") return [];
+    return [
+      {
+        source: "/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+    ];
+  },
   // 301 permanentes desde las URLs del sitio anterior
   async redirects() {
     const statusCode = 301 as const;
