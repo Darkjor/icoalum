@@ -3,6 +3,10 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
+  // /cotizar recibe hasta 3 planos de 10 MB (+ campos y multipart). Por defecto son 1 MB.
+  experimental: {
+    serverActions: { bodySizeLimit: "32mb" },
+  },
   images: {
     formats: ["image/avif", "image/webp"],
   },

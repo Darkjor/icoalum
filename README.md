@@ -72,3 +72,27 @@ Ninguna es obligatoria para compilar.
 | `RESEND_API_KEY` | Correo del formulario de cotización (servidor) |
 | `SUPABASE_URL` | Base de datos (servidor) |
 | `SUPABASE_SERVICE_ROLE_KEY` | Clave de servicio de Supabase (solo servidor, nunca `NEXT_PUBLIC_`) |
+
+## Backend de leads
+
+Los formularios (contacto rápido del home, `/contacto` y `/cotizar`) llaman a Server Actions (`src/app/actions/lead.ts`, `contact.ts`, `quote.ts`) que pasan por `src/lib/leads/submit.ts`: guarda en Supabase y envía correo con Resend, en paralelo. Basta con que uno funcione para dar éxito.
+
+**Modo degradado (sin variables):** el sitio compila y los formularios responden éxito, pero no se envía ni se guarda nada; solo se registra en la consola del servidor el tipo y un folio (sin datos personales). Los planos de `/cotizar` se ignoran. Si hay algo configurado y todo lo configurado falla, la acción lanza un error genérico y el formulario muestra "inténtalo de nuevo".
+
+**Activarlo** (en `.env.local` y en las variables del proyecto en Vercel; plantilla en `.env.example`):
+
+1. Resend: crea la API key y ponla en `RESEND_API_KEY`. Destino por defecto `presupuestos2@icoalum.net` (cambia con `LEADS_TO_EMAIL`, admite varios separados por coma). Remitente por defecto `Ico Alum <onboarding@resend.dev>` (solo envía a la cuenta dueña de Resend); verifica el dominio y define `LEADS_FROM_EMAIL`.
+2. Supabase: crea el proyecto, pon `SUPABASE_URL` y `SUPABASE_SERVICE_ROLE_KEY` (solo servidor, nunca `NEXT_PUBLIC_`).
+3. Aplica la migración `supabase/migrations/0001_leads.sql` (tabla `leads` con RLS sin políticas públicas y bucket privado `planos`):
+   ```bash
+   npx supabase login
+   npx supabase link --project-ref <ref-del-proyecto>
+   npx supabase db push
+   ```
+4. Cada correo lleva `reply_to` = correo del cliente. Los planos se suben al bucket `planos` y el correo incluye enlaces firmados de 7 días.
+
+**Anti-abuso:** campo trampa oculto `website` (y `empresa_web` en los formularios actuales) que debe llegar vacío; límites de largo por campo; máx. 5 envíos por IP cada 10 minutos. Ese límite vive en memoria, así que en serverless (Vercel) es de mejor esfuerzo (cada instancia lleva su cuenta); para uno estricto usa el firewall de Vercel o un KV.
+
+**Planos:** hasta 3 archivos (PDF, DWG, DXF, PNG, JPG o WEBP), 10 MB c/u, validados en servidor por extensión, MIME y tamaño. `next.config.ts` sube `serverActions.bodySizeLimit` a 32 MB.
+
+**Tests:** `npm test` (usa `node --test`, sin dependencias extra).
