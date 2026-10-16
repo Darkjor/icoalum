@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/Button";
-import { Placeholder } from "@/components/ui/Placeholder";
+import Image from "next/image";
 import { PaneReveal } from "@/components/ui/PaneReveal";
 import { Reveal } from "@/components/ui/Reveal";
 import { Container } from "@/components/ui/Container";
@@ -7,7 +7,7 @@ import { Container } from "@/components/ui/Container";
 /**
  * Hero: foto a sangre con velo navy-deep (mas opaco abajo y a la izquierda), texto abajo a la izquierda.
  * Solo 4 elementos: titular, subtitulo y 2 CTA.
- * [PENDIENTE CLIENTE] foto real del hero (cambiar el Placeholder por <Image priority>).
+ * Foto provisional del archivo del cliente (LCP: priority). [PENDIENTE CLIENTE] sesion fotografica profesional.
  */
 export function Hero() {
   return (
@@ -17,11 +17,14 @@ export function Hero() {
       className="relative flex min-h-[100dvh] items-end overflow-hidden bg-navy-deep"
     >
       <PaneReveal className="!absolute inset-0">
-        <Placeholder
-          ratio="16/9"
-          label="foto de fachada de cristal y aluminio, a sangre"
-          className="!h-full"
-          labelClassName="!bottom-auto !top-24 !text-photo/80"
+        <Image
+          src="/obra/residencia-muro-cristal-corredizo.jpg"
+          alt="Residencia con muro de cristal corredizo abierto hacia la alberca y la sala"
+          fill
+          priority
+          sizes="100vw"
+          quality={80}
+          className="object-cover object-center"
         />
         <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-navy-deep/95 via-navy-deep/65 via-55% to-navy-deep/30" />
         <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-navy-deep/70 via-navy-deep/25 via-60% to-transparent" />

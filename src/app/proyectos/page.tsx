@@ -27,8 +27,7 @@ export default function ProyectosPage() {
         <Container>
           {hayPendientes ? (
             <p className="mb-12 max-w-[64ch] border-l-2 border-navy pl-4 text-body-sm text-text-2 md:mb-16">
-              [PENDIENTE CLIENTE] Los proyectos que se ven aquí son marcadores. Se reemplazan con obras reales
-              (nombre, ubicación, año, sistemas y fotos) en cuanto el cliente las entregue.
+              Fotografías provisionales del archivo del cliente; nombres, ubicaciones y sistemas por confirmar.
             </p>
           ) : null}
           {/* useSearchParams exige Suspense; el respaldo es el listado completo, ya renderizado en el servidor. */}

@@ -91,7 +91,7 @@ export default function ServiciosPage() {
             <article className="grid grid-cols-1 gap-8 md:grid-cols-12 md:items-end md:gap-6">
               <div className="md:col-span-8">
                 <ImageLink s={templado}>
-                  <ServiceImage service={templado} ratio={templado.ratioHub} />
+                  <ServiceImage service={templado} ratio={templado.ratioHub} sizes="(min-width: 768px) 66vw, 100vw" />
                 </ImageLink>
               </div>
               <div className="md:col-span-4">
@@ -108,7 +108,7 @@ export default function ServiciosPage() {
               </div>
               <div className="md:order-2 md:col-span-5 md:col-start-8">
                 <ImageLink s={pvc}>
-                  <ServiceImage service={pvc} ratio={pvc.ratioHub} from="right" />
+                  <ServiceImage service={pvc} ratio={pvc.ratioHub} from="right" sizes="(min-width: 768px) 42vw, 100vw" />
                 </ImageLink>
               </div>
             </article>
@@ -118,7 +118,7 @@ export default function ServiciosPage() {
           <Reveal>
             <article>
               <ImageLink s={aluminio}>
-                <ServiceImage service={aluminio} ratio={aluminio.ratioHub} />
+                <ServiceImage service={aluminio} ratio={aluminio.ratioHub} sizes="100vw" />
               </ImageLink>
               <div className="mt-8 grid grid-cols-1 gap-6 md:mt-10 md:grid-cols-12 md:gap-6">
                 <div className="md:col-span-5">
@@ -144,7 +144,7 @@ export default function ServiciosPage() {
             <Reveal className="md:col-span-5">
               <article>
                 <ImageLink s={eficientes}>
-                  <ServiceImage service={eficientes} ratio="1/1" />
+                  <ServiceImage service={eficientes} ratio="1/1" sizes="(min-width: 768px) 42vw, 100vw" />
                 </ImageLink>
                 <div className="mt-6">
                   <ServiceText s={eficientes} titleClass="text-h3" />
@@ -154,7 +154,7 @@ export default function ServiciosPage() {
             <Reveal className="md:col-span-6 md:col-start-7 md:mt-32">
               <article>
                 <ImageLink s={calculo}>
-                  <ServiceImage service={calculo} ratio="16/10" from="right" />
+                  <ServiceImage service={calculo} ratio="16/10" from="right" sizes="(min-width: 768px) 50vw, 100vw" />
                 </ImageLink>
                 <div className="mt-6">
                   <ServiceText s={calculo} titleClass="text-h3" />

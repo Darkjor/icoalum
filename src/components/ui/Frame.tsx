@@ -13,6 +13,7 @@ export function Frame({
   pendiente = "imagen",
   sizes = "(min-width: 1024px) 50vw, 100vw",
   priority = false,
+  position,
   children,
   className = "",
 }: {
@@ -23,6 +24,8 @@ export function Frame({
   pendiente?: string;
   sizes?: string;
   priority?: boolean;
+  /** object-position de la foto cuando el recorte del contenedor no coincide con la foto. */
+  position?: string;
   children?: ReactNode;
   className?: string;
 }) {
@@ -33,7 +36,16 @@ export function Frame({
         children
       ) : src ? (
         <div className="relative w-full overflow-hidden" style={{ aspectRatio: aspect }}>
-          <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className="object-cover" />
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            sizes={sizes}
+            priority={priority}
+            loading={priority ? undefined : "lazy"}
+            style={position ? { objectPosition: position } : undefined}
+            className="object-cover"
+          />
         </div>
       ) : (
         <Placeholder ratio={ratio} label={pendiente} />

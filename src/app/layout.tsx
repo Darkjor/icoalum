@@ -5,6 +5,7 @@ import { CookieBanner } from "@/components/CookieBanner";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
+import { ogImage } from "@/lib/seo";
 import { fullAddress, site } from "@/lib/site";
 import "./globals.css";
 
@@ -44,11 +45,13 @@ export const metadata: Metadata = {
     title: `${site.name} | Cancelería de aluminio, PVC y cristal en Zapopan`,
     description: site.description,
     url: "/",
+    images: [ogImage],
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.name} | Cancelería de aluminio, PVC y cristal en Zapopan`,
     description: site.description,
+    images: [{ url: ogImage.url, alt: ogImage.alt }],
   },
   robots: { index: true, follow: true },
 };

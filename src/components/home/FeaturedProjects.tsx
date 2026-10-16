@@ -18,6 +18,16 @@ const layout = [
   "md:col-span-5 md:mt-40",
 ];
 
+/** Ancho aproximado de cada celda (mismo orden que `layout`) para `sizes`. */
+const sizes = [
+  "(min-width: 768px) 42vw, 100vw",
+  "(min-width: 768px) 58vw, 100vw",
+  "(min-width: 768px) 33vw, 100vw",
+  "(min-width: 768px) 66vw, 100vw",
+  "(min-width: 768px) 58vw, 100vw",
+  "(min-width: 768px) 42vw, 100vw",
+];
+
 export function FeaturedProjects() {
   return (
     <Section aria-labelledby="proyectos-titulo" tone="surface">
@@ -48,7 +58,9 @@ export function FeaturedProjects() {
                             src={img.src}
                             alt={img.alt}
                             fill
-                            sizes="(min-width: 768px) 60vw, 100vw"
+                            sizes={sizes[i]}
+                            loading="lazy"
+                            style={img.position ? { objectPosition: img.position } : undefined}
                             className="object-cover"
                           />
                         </div>

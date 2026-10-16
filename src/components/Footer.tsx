@@ -1,6 +1,6 @@
 import { EnvelopeSimple, MapPin, Phone } from "@phosphor-icons/react/ssr";
+import Image from "next/image";
 import Link from "next/link";
-import { Logo } from "@/components/Logo";
 import { TrackLink } from "@/components/TrackLink";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -21,7 +21,19 @@ export async function Footer() {
       <Container className="py-16 md:py-20">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-4">
-            <Logo />
+            <Link
+              href="/"
+              className="inline-grid place-items-center border border-on-deep/25 bg-tile p-3"
+            >
+              <Image
+                src="/obra/logo-ico-alum.png"
+                alt={`${site.name}, inicio`}
+                width={283}
+                height={293}
+                loading="lazy"
+                className="h-32 w-auto"
+              />
+            </Link>
             <p className="mt-6 max-w-[34ch] text-body text-on-deep-2">
               Cancelería de aluminio, PVC, cristal templado y fachadas. Fabricamos e instalamos
               en Zapopan desde {site.founded}, {yearsInBusiness} años de oficio.

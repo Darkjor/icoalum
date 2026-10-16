@@ -81,6 +81,13 @@ export default async function NosotrosPage() {
           </div>
           <div className="lg:col-span-8">
             <Reveal>
+              <Frame
+                src="/obra/fachada-comercial-cristal.jpg"
+                alt="Agencia comercial con una fachada larga de cristal"
+                ratio="16/9"
+                sizes="(min-width: 1024px) 66vw, 100vw"
+                className="mb-10 md:mb-14"
+              />
               <ol className="border-b border-line">
                 <TimelineRow year={String(FOUNDED_YEAR)} title="Se funda Ico Alum">
                   <p>Nace la empresa que hoy fabrica e instala cancelería, PVC, cristal templado y fachadas.</p>

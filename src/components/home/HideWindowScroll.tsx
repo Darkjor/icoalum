@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform, type MotionValue } from "motion/react"
 import { useRef } from "react";
 import { buttonClasses } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { Placeholder } from "@/components/ui/Placeholder";
+import Image from "next/image";
 
 type Moment = { readonly titulo: string; readonly cuerpo: string };
 
@@ -70,11 +70,13 @@ export function HideWindowScroll({
     <div ref={ref} className="relative h-[260svh] md:h-[300svh]">
       <div className="sticky top-0 flex h-[100dvh] items-end overflow-hidden">
         <motion.div style={{ scale }} className="absolute inset-0 will-change-transform">
-          <Placeholder
-            ratio="16/9"
-            label="foto a sangre de la fachada con Hide Window"
-            className="!h-full"
-            labelClassName="!bottom-auto !top-24 !text-photo/80"
+          <Image
+            src="/obra/muro-cortina-interior.jpg"
+            alt="Muro cortina de cristal con retícula visto desde el interior, con árboles al fondo"
+            fill
+            loading="lazy"
+            sizes="100vw"
+            className="object-cover object-center"
           />
         </motion.div>
         <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/55 via-60% to-navy-deep/45" />

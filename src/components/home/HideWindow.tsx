@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Placeholder } from "@/components/ui/Placeholder";
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { buttonClasses } from "@/components/ui/Button";
 import { HideWindowScroll } from "./HideWindowScroll";
@@ -35,12 +35,14 @@ export function HideWindow({
       </div>
 
       <div className="motion-safe:hidden">
-        <div className="relative">
-          <Placeholder
-            ratio="16/9"
-            label="foto a sangre de la fachada con Hide Window"
-            className={hero ? "!min-h-[85dvh]" : "!min-h-[60dvh]"}
-            labelClassName="!bottom-auto !top-24 !text-photo/80"
+        <div className={`relative ${hero ? "min-h-[85dvh]" : "min-h-[60dvh]"}`}>
+          <Image
+            src="/obra/muro-cortina-interior.jpg"
+            alt="Muro cortina de cristal con retícula visto desde el interior, con árboles al fondo"
+            fill
+            loading="lazy"
+            sizes="100vw"
+            className="object-cover object-center"
           />
           <div aria-hidden className="absolute inset-0 bg-navy-deep/60" />
           <Container className="absolute inset-x-0 bottom-0 pb-10 md:pb-14">

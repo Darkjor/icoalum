@@ -4,8 +4,9 @@ import { Frame } from "@/components/ui/Frame";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import Link from "next/link";
+import { getService } from "@/data/services";
 
-/** [PENDIENTE CLIENTE] fotos reales de cada linea (hoy Placeholder con ratio fijo). */
+/** Fotos provisionales del archivo del cliente: salen de src/data/services.ts. [PENDIENTE CLIENTE] sesion profesional. */
 const services = [
   {
     nombre: "Cristal templado",
@@ -13,6 +14,7 @@ const services = [
     href: "/servicios/cristal-templado",
     ratio: "7/5",
     span: "md:col-span-7",
+    sizes: "(min-width: 768px) 58vw, 100vw",
   },
   {
     nombre: "Ventanería PVC",
@@ -20,6 +22,7 @@ const services = [
     href: "/servicios/ventaneria-pvc",
     ratio: "1/1",
     span: "md:col-span-5",
+    sizes: "(min-width: 768px) 42vw, 100vw",
   },
   {
     nombre: "Cancelería de aluminio",
@@ -27,6 +30,7 @@ const services = [
     href: "/servicios/canceleria-aluminio",
     ratio: "4/3",
     span: "md:col-span-4",
+    sizes: "(min-width: 768px) 33vw, 100vw",
   },
   {
     nombre: "Cristales eficientes",
@@ -34,6 +38,7 @@ const services = [
     href: "/servicios/cristales-eficientes",
     ratio: "4/3",
     span: "md:col-span-4",
+    sizes: "(min-width: 768px) 33vw, 100vw",
   },
   {
     nombre: "Cálculo estructural",
@@ -41,6 +46,7 @@ const services = [
     href: "/servicios/calculo-estructural",
     ratio: "4/3",
     span: "md:col-span-4",
+    sizes: "(min-width: 768px) 33vw, 100vw",
   },
 ] as const;
 
@@ -55,10 +61,19 @@ export function Services() {
       </Reveal>
 
       <ul className="mt-12 grid grid-cols-1 items-start gap-x-6 gap-y-12 md:mt-16 md:grid-cols-12">
-        {services.map((s) => (
+        {services.map((s) => {
+          const imagen = getService(s.href.replace("/servicios/", ""))?.imagen;
+          return (
           <li key={s.href} className={s.span}>
             <Link href={s.href} className="group block">
-              <Frame ratio={s.ratio} pendiente={`foto de ${s.nombre.toLowerCase()}`} />
+              <Frame
+                ratio={s.ratio}
+                src={imagen?.src}
+                alt={imagen?.alt}
+                position={imagen?.position}
+                sizes={s.sizes}
+                pendiente={`foto de ${s.nombre.toLowerCase()}`}
+              />
               <div className="mt-5 flex items-start justify-between gap-6">
                 <div>
                   <h3 className="display text-h3 text-navy">{s.nombre}</h3>
@@ -73,7 +88,8 @@ export function Services() {
               </div>
             </Link>
           </li>
-        ))}
+          );
+        })}
       </ul>
     </Section>
   );

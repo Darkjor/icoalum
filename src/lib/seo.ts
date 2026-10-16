@@ -3,6 +3,14 @@ import { site } from "./site";
 
 type Input = { title: string; description: string; path: string };
 
+/** Imagen por defecto al compartir (foto provisional del archivo del cliente, 1920x1080). */
+export const ogImage = {
+  url: "/obra/residencia-muro-cristal-corredizo.jpg",
+  width: 1920,
+  height: 1080,
+  alt: "Residencia con muro de cristal corredizo abierto hacia la alberca y la sala",
+};
+
 /** Metadata por pagina: titulo (con plantilla del layout), canonica, OG y Twitter. */
 export function buildMetadata({ title, description, path }: Input): Metadata {
   const url = path === "/" ? "/" : path.replace(/\/$/, "");
@@ -17,11 +25,13 @@ export function buildMetadata({ title, description, path }: Input): Metadata {
       siteName: site.name,
       locale: "es_MX",
       type: "website",
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
       title: `${title} | ${site.name}`,
       description,
+      images: [{ url: ogImage.url, alt: ogImage.alt }],
     },
   };
 }

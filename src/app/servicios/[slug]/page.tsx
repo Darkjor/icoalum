@@ -167,8 +167,7 @@ export default async function ServicioPage({ params }: Props) {
         </div>
         {hayPendientes ? (
           <p className="mt-6 max-w-[60ch] text-body-sm text-text-2">
-            [PENDIENTE CLIENTE] Las obras que se muestran son marcadores: se reemplazan con proyectos reales
-            cuando el cliente entregue fotos y datos.
+            Fotografías provisionales del archivo del cliente; nombres, ubicaciones y sistemas por confirmar.
           </p>
         ) : null}
         <ul className="mt-12 grid grid-cols-1 items-start gap-x-6 gap-y-14 md:mt-16 md:grid-cols-12">

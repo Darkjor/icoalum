@@ -50,7 +50,15 @@ function GalleryImage({
       <PaneReveal tone="bg" from={index % 2 === 0 ? "left" : "right"}>
         {img.src ? (
           <div className="relative w-full" style={{ aspectRatio: img.ratio.replace("/", " / ") }}>
-            <Image src={img.src} alt={img.alt} fill sizes={sizes} className="object-cover" />
+            <Image
+              src={img.src}
+              alt={img.alt}
+              fill
+              sizes={sizes}
+              loading="lazy"
+              style={img.position ? { objectPosition: img.position } : undefined}
+              className="object-cover"
+            />
           </div>
         ) : (
           <Placeholder ratio={img.ratio} label={img.pendiente} />
@@ -123,7 +131,7 @@ export default async function ProyectoPage({ params }: Props) {
           <ul className="mt-10 grid grid-cols-1 items-start gap-x-6 gap-y-10 md:mt-14 md:grid-cols-12">
             {resto.map((img, i) => (
               <li
-                key={img.pendiente}
+                key={img.src ?? img.pendiente}
                 className={
                   ["md:col-span-4", "md:col-span-7 md:col-start-6 md:mt-20"][i % 2] ?? "md:col-span-6"
                 }

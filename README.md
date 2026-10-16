@@ -55,7 +55,8 @@ Esquinas rectas; paleta de marca: vino `#940C11` (acción sobre claro), azul `#0
    - `galeria`: lista de `{ src, alt, pendiente, ratio }`. La primera es la portada. Sin `src` se muestra el Placeholder con el texto de `pendiente`.
    - `ratioPortada`: `"4/5"`, `"16/9"` o `"1/1"` (portada del home).
    - `pendiente`: `false` cuando los datos son reales. Con `true` la ficha lleva `noindex` y no entra al sitemap.
-3. Fotos en `public/proyectos/<slug>/` y se referencian como `src: "/proyectos/<slug>/portada.jpg"`. Usa `.jpg` o `.webp` optimizados; `next/image` genera los tamaños.
+3. Imágenes provisionales: hoy están en `public/obra/` (archivo del cliente, ya optimizadas) y deben reemplazarse por las de la sesión profesional. Dos son renders de baja resolución (`render-torres-cristal.jpg`, 1000x750, y `render-edificio-curvo.jpg`, 800x471): no son obra terminada y no deben usarse a sangre ni en el hero. Las fotos de los servicios viven en `src/data/services.ts` (campo `imagen`); las del hero, Hide Window, nosotros, Footer y OG/Twitter (`ogImage` en `src/lib/seo.ts`) están en sus componentes.
+   Fotos definitivas en `public/proyectos/<slug>/` y se referencian como `src: "/proyectos/<slug>/portada.jpg"`. Usa `.jpg` o `.webp` optimizados; `next/image` genera los tamaños.
 4. `npm run build` y revisa `/proyectos/<slug>`.
 
 Los servicios viven igual en `src/data/services.ts` (un objeto por línea y una ruta `/servicios/<slug>` por cada uno).

@@ -16,6 +16,13 @@ import type { ProjectType } from "./projects";
  * Solo datos verificados: fabricantes e instaladores desde 1979 en Zapopan, fabrica propia,
  * sistemas y marcas confirmados. No agregar cifras, plazos, garantias ni certificaciones.
  */
+export type ServiceImagen = {
+  src: string;
+  alt: string;
+  /** object-position del recorte (CSS). */
+  position?: string;
+};
+
 export type Service = {
   slug: string;
   nombre: string;
@@ -24,8 +31,8 @@ export type Service = {
   /** H1 de la pagina del servicio. */
   titular: string;
   intro: string[];
-  /** Descripcion de la foto que falta (Placeholder). */
-  imagenPendiente: string;
+  /** Foto provisional (archivo del cliente, public/obra/). La leen home, hub y detalle. */
+  imagen: ServiceImagen;
   /** Proporcion de la imagen en el hub. */
   ratioHub: string;
   paraQue: { titulo: string; texto: string }[];
@@ -57,7 +64,11 @@ export const services: Service[] = [
       "Fabricamos e instalamos cerramientos de cristal templado: corredizos, apilables y plegables, y también fachadas de cristal. Cada cerramiento se resuelve con herrajes Teufelbeschlag y se dimensiona para el vano exacto de la obra.",
       "Trabajamos desde los planos del arquitecto, del desarrollador o de la constructora, y entregamos el sistema completo: cristal, herraje, perfil e instalación.",
     ],
-    imagenPendiente: "cerramiento de cristal templado corredizo en obra",
+    imagen: {
+      src: "/obra/interior-barandal-cristal.jpg",
+      alt: "Interior de una residencia con barandal de cristal, lucernario y una palmera",
+      position: "50% 50%",
+    },
     ratioHub: "7/5",
     paraQue: [
       {
@@ -113,7 +124,11 @@ export const services: Service[] = [
       "Fabricamos ventanas y puertas de PVC con sistemas Kömmerling, pensadas para espacios donde importan el confort térmico y el aislamiento del ruido.",
       "Cada ventana se mide y se fabrica para su vano, y la instalamos con nuestro propio equipo. Para quien proyecta, eso significa menos interlocutores y menos sorpresas entre el plano y la obra.",
     ],
-    imagenPendiente: "ventana de PVC instalada en fachada residencial",
+    imagen: {
+      src: "/obra/residencia-ventanas-curvas-mar.jpg",
+      alt: "Ventanas curvas de piso a techo frente al mar, en una residencia con muro rojo",
+      position: "35% 50%",
+    },
     ratioHub: "4/5",
     paraQue: [
       {
@@ -165,7 +180,11 @@ export const services: Service[] = [
       "Fabricamos cancelería de aluminio en Guadalajara y Zapopan: ventanas, puertas, canceles y fachadas de cristal, con las líneas de los principales sistemas del mercado.",
       "Al fabricar en nuestra propia planta, la medida se controla desde el corte hasta la instalación, y el proyecto tiene un solo responsable de principio a fin.",
     ],
-    imagenPendiente: "cancelería de aluminio en fachada",
+    imagen: {
+      src: "/obra/muro-cortina-interior.jpg",
+      alt: "Muro cortina de cristal con retícula visto desde el interior, con árboles al fondo",
+      position: "50% 45%",
+    },
     ratioHub: "21/9",
     paraQue: [
       {
@@ -218,7 +237,11 @@ export const services: Service[] = [
       "Suministramos cristales térmicos y acústicos para proyectos donde la fachada también tiene que cuidar la temperatura y el ruido del interior.",
       "Trabajamos medidas jumbo, así que los claros grandes no obligan a partir el cristal en más piezas de las necesarias. Todo se coordina con la cancelería y el cálculo del mismo proyecto.",
     ],
-    imagenPendiente: "cristal de gran formato en fachada",
+    imagen: {
+      src: "/obra/cubierta-cristal-pasarela.jpg",
+      alt: "Cubierta de cristal estructural sobre una pasarela, bajo un cielo azul",
+      position: "50% 50%",
+    },
     ratioHub: "4/3",
     paraQue: [
       {
@@ -273,7 +296,11 @@ export const services: Service[] = [
       "Calculamos cada fachada y cada claro grande antes de pasar a fábrica, para que perfiles, herrajes y cristal estén dimensionados para lo que van a sostener.",
       "Para el arquitecto y la constructora, el cálculo está dentro del mismo proyecto: no hay un tercero que coordinar entre el diseño del vano y su fabricación.",
     ],
-    imagenPendiente: "plano o detalle estructural de una fachada",
+    imagen: {
+      src: "/obra/render-torres-cristal.jpg",
+      alt: "Render de torres de oficinas con fachadas de cristal",
+      position: "50% 50%",
+    },
     ratioHub: "4/3",
     paraQue: [
       {
