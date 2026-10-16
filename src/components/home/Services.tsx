@@ -61,14 +61,14 @@ export function Services() {
               <Frame ratio={s.ratio} pendiente={`foto de ${s.nombre.toLowerCase()}`} />
               <div className="mt-5 flex items-start justify-between gap-6">
                 <div>
-                  <h3 className="display text-h3 text-text">{s.nombre}</h3>
+                  <h3 className="display text-h3 text-navy">{s.nombre}</h3>
                   <p className="mt-2 max-w-[44ch] text-body text-text-2">{s.linea}</p>
                 </div>
                 <ArrowRight
                   aria-hidden
                   weight="light"
                   size={32}
-                  className="mt-0.5 shrink-0 text-navy transition-transform duration-300 group-hover:translate-x-1.5 motion-reduce:transition-none"
+                  className="mt-0.5 shrink-0 text-navy transition-[transform,color] duration-300 group-hover:text-vino group-hover:translate-x-1.5 motion-reduce:transition-none"
                 />
               </div>
             </Link>

@@ -15,8 +15,10 @@ import {
 
 type Status = "idle" | "sending" | "success" | "error";
 
+// Formulario sobre la banda navy-deep (seccion CTA final): campos --surface con texto tinta,
+// labels claros y errores en rosa legible (#ffb4b4 sobre navy-deep).
 const inputClass =
-  "block w-full border border-text/60 bg-surface px-4 text-body text-text placeholder:text-text-2 aria-[invalid=true]:border-danger aria-[invalid=true]:border-2";
+  "block w-full border border-line bg-surface px-4 text-body text-text placeholder:text-text-2 aria-[invalid=true]:border-danger-deep aria-[invalid=true]:border-2";
 
 export function QuickLeadForm() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -77,7 +79,7 @@ export function QuickLeadForm() {
     return (
       <div role="status" className="border border-line bg-surface p-8">
         <CheckCircle aria-hidden weight="light" size={40} className="text-navy" />
-        <p className="display mt-4 text-h3 text-text">Recibimos tu mensaje.</p>
+        <p className="display mt-4 text-h3 text-navy">Recibimos tu mensaje.</p>
         <p className="mt-2 text-body text-text-2">
           Te respondemos con una cotización lo antes posible.
         </p>
@@ -108,7 +110,7 @@ export function QuickLeadForm() {
     } as const;
     return (
       <div>
-        <label htmlFor={`lead-${name}`} className="mb-2 block text-body-sm font-medium text-text">
+        <label htmlFor={`lead-${name}`} className="mb-2 block text-body-sm font-medium text-on-deep">
           {label}
         </label>
         {props.textarea ? (
@@ -122,7 +124,7 @@ export function QuickLeadForm() {
           />
         )}
         {err ? (
-          <p id={`lead-${name}-error`} className="mt-2 flex items-start gap-2 text-body-sm text-danger">
+          <p id={`lead-${name}-error`} className="mt-2 flex items-start gap-2 text-body-sm text-danger-deep">
             <WarningCircle aria-hidden weight="light" size={20} className="mt-px shrink-0" />
             {err}
           </p>
@@ -151,12 +153,12 @@ export function QuickLeadForm() {
       </div>
 
       <div>
-        <Button type="submit" variant="primary" disabled={status === "sending"} className="w-full sm:w-auto">
+        <Button type="submit" variant="primaryOnDark" disabled={status === "sending"} className="w-full sm:w-auto">
           {status === "sending" ? "Enviando" : "Cotizar proyecto"}
         </Button>
         <div role="alert" className="min-h-0">
           {status === "error" ? (
-            <p className="mt-3 flex items-start gap-2 text-body-sm text-danger">
+            <p className="mt-3 flex items-start gap-2 text-body-sm text-danger-deep">
               <WarningCircle aria-hidden weight="light" size={20} className="mt-px shrink-0" />
               No pudimos enviar tu solicitud. Revisa tu conexión e inténtalo de nuevo.
             </p>

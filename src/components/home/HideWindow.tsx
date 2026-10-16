@@ -29,7 +29,7 @@ export function HideWindow({
 } = {}) {
   const Title = hero ? "h1" : "h2";
   return (
-    <section aria-label="Hide Window" data-hero={hero ? "" : undefined} className="bg-ink text-photo">
+    <section aria-label="Hide Window" data-hero={hero ? "" : undefined} className="on-dark bg-navy-deep text-photo">
       <div className="hidden motion-safe:block">
         <HideWindowScroll title={hideWindowTitle} moments={hideWindowMoments} showCta={showCta} titleAs={Title} />
       </div>
@@ -42,7 +42,7 @@ export function HideWindow({
             className={hero ? "!min-h-[85dvh]" : "!min-h-[60dvh]"}
             labelClassName="!bottom-auto !top-24 !text-photo/80"
           />
-          <div aria-hidden className="absolute inset-0 bg-ink/55" />
+          <div aria-hidden className="absolute inset-0 bg-navy-deep/60" />
           <Container className="absolute inset-x-0 bottom-0 pb-10 md:pb-14">
             <Title className="display max-w-[22ch] text-h1 text-photo">{hideWindowTitle}</Title>
           </Container>
@@ -50,14 +50,14 @@ export function HideWindow({
         <Container className="py-14 md:py-20">
           <ol className="grid gap-10 md:grid-cols-3 md:gap-8">
             {hideWindowMoments.map((m) => (
-              <li key={m.titulo} className="border-t border-photo/30 pt-6">
+              <li key={m.titulo} className="border-t border-amber/70 pt-6">
                 <h3 className="display text-h3 text-photo">{m.titulo}</h3>
                 <p className="mt-3 max-w-[40ch] text-body text-photo/85">{m.cuerpo}</p>
               </li>
             ))}
           </ol>
           {showCta ? (
-            <Link href="/innovacion" className={buttonClasses("onPhoto", "mt-12")}>
+            <Link href="/innovacion" className={buttonClasses("secondaryOnDark", "mt-12")}>
               Conocer la innovación
             </Link>
           ) : null}

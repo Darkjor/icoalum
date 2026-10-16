@@ -79,7 +79,7 @@ export default function FabricaPage() {
           <dl className="md:col-span-6 md:col-start-7">
             {maquinaria.map((m) => (
               <div key={m.rotulo} className="border-t border-line py-6 first:border-t-text">
-                <dt className="display text-h3 text-text">{m.rotulo}</dt>
+                <dt className="display text-h3 text-navy">{m.rotulo}</dt>
                 <dd className="mt-2 max-w-[44ch] text-body text-text-2">[PENDIENTE CLIENTE] {m.pendiente}</dd>
               </div>
             ))}
@@ -93,8 +93,8 @@ export default function FabricaPage() {
         </h2>
         <ul className="mt-12 grid gap-8 md:mt-16 md:grid-cols-3">
           {calidad.map((c) => (
-            <li key={c.etapa} className="border-t border-text pt-5">
-              <h3 className="display text-h3 text-text">{c.etapa}</h3>
+            <li key={c.etapa} className="border-t border-navy pt-5">
+              <h3 className="display text-h3 text-navy">{c.etapa}</h3>
               <p className="mt-3 max-w-[34ch] text-body text-text-2">[PENDIENTE CLIENTE] {c.pendiente}</p>
             </li>
           ))}

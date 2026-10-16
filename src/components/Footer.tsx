@@ -8,26 +8,28 @@ import { navLinks } from "@/lib/routes";
 import { fullAddress, mapEmbedUrl, site } from "@/lib/site";
 import { getTimeFacts } from "@/lib/years";
 
-const heading = "text-body-sm font-medium uppercase tracking-[0.14em] text-text-2";
-const link = "inline-flex min-h-11 items-center gap-2 hover:underline underline-offset-4";
+const heading = "text-body-sm font-medium uppercase tracking-[0.14em] text-on-deep-2";
+const link =
+  "inline-flex min-h-11 items-center gap-2 underline-offset-4 hover:text-amber hover:underline";
 
 export async function Footer() {
   const { year, yearsInBusiness } = await getTimeFacts();
   const { address } = site;
 
   return (
-    <footer className="border-t border-line bg-surface-2">
+    <footer className="on-dark border-t-[3px] border-amber bg-navy-deep text-on-deep">
       <Container className="py-16 md:py-20">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-4">
             <Logo />
-            <p className="mt-6 max-w-[34ch] text-body text-text-2">
+            <p className="mt-6 max-w-[34ch] text-body text-on-deep-2">
               Cancelería de aluminio, PVC, cristal templado y fachadas. Fabricamos e instalamos
               en Zapopan desde {site.founded}, {yearsInBusiness} años de oficio.
             </p>
             <Button
               href="/cotizar"
               track={{ event: "cta_cotizar", data: { ubicacion: "footer" } }}
+              variant="primaryOnDark"
               className="mt-8"
             >
               Cotizar proyecto
@@ -38,7 +40,7 @@ export async function Footer() {
             <div>
               <h2 className={heading}>Contacto</h2>
               <address className="mt-4 flex flex-col not-italic">
-                <p className="flex gap-2 py-2 text-body text-text">
+                <p className="flex gap-2 py-2 text-body text-on-deep">
                   <MapPin aria-hidden weight="light" size={22} className="mt-0.5 shrink-0" />
                   <span>
                     {address.street}
@@ -101,7 +103,7 @@ export async function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 border border-line p-2">
+        <div className="mt-14 border border-on-deep/25 p-2">
           <iframe
             title={`Mapa de la ubicación de ${site.name}: ${fullAddress}`}
             src={mapEmbedUrl}
@@ -111,11 +113,11 @@ export async function Footer() {
           />
         </div>
 
-        <div className="mt-10 flex flex-col gap-2 border-t border-line pt-6 text-body-sm text-text-2 md:flex-row md:items-center md:justify-between">
+        <div className="mt-10 flex flex-col gap-2 border-t border-on-deep/25 pt-6 text-body-sm text-on-deep-2 md:flex-row md:items-center md:justify-between">
           <p>
             © {year} {site.legalName}
           </p>
-          <Link href="/legal" className="inline-flex min-h-11 items-center hover:underline underline-offset-4">
+          <Link href="/legal" className="inline-flex min-h-11 items-center underline-offset-4 hover:text-amber hover:underline">
             Aviso de privacidad y legal
           </Link>
         </div>

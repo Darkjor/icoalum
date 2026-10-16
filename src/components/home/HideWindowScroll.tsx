@@ -77,7 +77,7 @@ export function HideWindowScroll({
             labelClassName="!bottom-auto !top-24 !text-photo/80"
           />
         </motion.div>
-        <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/55 via-60% to-ink/45" />
+        <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/55 via-60% to-navy-deep/45" />
 
         <Container className="relative z-10 pb-12 pt-28 md:pb-16">
           <Title className="display max-w-[20ch] text-h1 text-photo">{title}</Title>
@@ -88,12 +88,12 @@ export function HideWindowScroll({
           </div>
           <div className="mt-6 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             {showCta ? (
-              <Link href="/innovacion" className={buttonClasses("onPhoto", "self-start")}>
+              <Link href="/innovacion" className={buttonClasses("secondaryOnDark", "self-start")}>
                 Conocer la innovación
               </Link>
             ) : null}
             <div aria-hidden className="h-px w-full max-w-xs bg-photo/25 sm:w-64">
-              <motion.div style={{ scaleX: bar }} className="h-px origin-left bg-photo" />
+              <motion.div style={{ scaleX: bar }} className="h-px origin-left bg-amber" />
             </div>
           </div>
         </Container>

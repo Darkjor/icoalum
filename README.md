@@ -33,7 +33,7 @@ Tokens y escala tipográfica: `src/app/globals.css`. Spec visual: `Proyectos/ico
 
 ## Reglas de diseño
 
-Esquinas rectas; ámbar solo como relleno de botón con texto tinta; Phosphor light; sin serif; solo `transform` y `opacity` en animación; sin guiones largos (em/en dash) en ningún texto; el CTA de cotizar siempre se llama "Cotizar proyecto".
+Esquinas rectas; paleta de marca: vino `#940C11` (acción sobre claro), azul `#044269` / `#032F4A` (estructura y bandas oscuras) y ámbar `#EC9442` (destello y CTA sobre oscuro; nunca texto pequeño sobre claro; vino nunca sobre azul); Phosphor light; sin serif; solo `transform` y `opacity` en animación; sin guiones largos (em/en dash) en ningún texto; el CTA de cotizar siempre se llama "Cotizar proyecto".
 
 ## Cómo agregar una página o un proyecto
 

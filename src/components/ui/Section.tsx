@@ -5,11 +5,13 @@ const tones = {
   bg: "bg-bg",
   surface: "bg-surface",
   surface2: "bg-surface-2",
+  // Banda oscura de marca: texto claro y foco ambar
+  deep: "on-dark bg-navy-deep text-on-deep",
 } as const;
 
 /**
- * Bloque de pagina con aire vertical y Container. Un solo tema: el tono
- * solo cambia la superficie, nunca invierte colores.
+ * Bloque de pagina con aire vertical y Container. El tono cambia la superficie;
+ * `deep` es la banda oscura de marca (navy-deep) con texto claro.
  */
 export function Section({
   children,

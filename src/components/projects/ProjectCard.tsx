@@ -33,7 +33,7 @@ export function ProjectCard({
           </div>
         </PaneReveal>
       </Frame>
-      <h3 className="display mt-5 text-h3 text-text group-hover:text-navy">{project.nombre}</h3>
+      <h3 className="display mt-5 text-h3 text-navy group-hover:text-vino">{project.nombre}</h3>
       <p className="mt-1 text-body text-text-2">
         {project.tipo}, {project.ubicacion}
       </p>

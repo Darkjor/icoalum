@@ -98,7 +98,7 @@ export default async function ServicioPage({ params }: Props) {
                 key={x.titulo}
                 className="grid grid-cols-1 gap-2 border-t border-line py-8 first:border-t-0 first:pt-0 md:grid-cols-12 md:gap-6"
               >
-                <h3 className="display text-h3 text-text md:col-span-5">{x.titulo}</h3>
+                <h3 className="display text-h3 text-navy md:col-span-5">{x.titulo}</h3>
                 <p className="text-body text-text-2 md:col-span-7">{x.texto}</p>
               </li>
             ))}
@@ -136,9 +136,9 @@ export default async function ServicioPage({ params }: Props) {
           {s.beneficios.map((b) => {
             const Icono = b.icono;
             return (
-              <li key={b.titulo} className="border-t border-text pt-6">
+              <li key={b.titulo} className="border-t border-navy pt-6">
                 <Icono aria-hidden weight="light" size={40} className="text-navy" />
-                <h3 className="display mt-6 text-h3 text-text">{b.titulo}</h3>
+                <h3 className="display mt-6 text-h3 text-navy">{b.titulo}</h3>
                 <p className="mt-3 max-w-[40ch] text-body text-text-2">{b.texto}</p>
               </li>
             );
@@ -154,7 +154,7 @@ export default async function ServicioPage({ params }: Props) {
           </h2>
           <Link
             href="/proyectos"
-            className="group/link inline-flex items-center gap-3 text-body font-medium text-navy"
+            className="group/link inline-flex items-center gap-3 text-body font-medium text-vino"
           >
             <span className="underline-offset-4 group-hover/link:underline">Ver todos los proyectos</span>
             <ArrowRight

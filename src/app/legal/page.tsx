@@ -38,9 +38,9 @@ const indice = [
 ] as const;
 
 const h2Class = "display scroll-mt-28 text-h1 text-text";
-const h3Class = "display mt-12 scroll-mt-28 text-h3 text-text";
+const h3Class = "display mt-12 scroll-mt-28 text-h3 text-navy";
 const pClass = "mt-4 text-body text-text-2";
-const linkClass = "text-navy underline-offset-4 hover:underline";
+const linkClass = "text-vino underline-offset-4 hover:text-vino-hover hover:underline";
 
 function Item({ children }: { children: ReactNode }) {
   return <li className="mt-2 pl-1">{children}</li>;
@@ -60,10 +60,10 @@ export default function LegalPage() {
           <nav aria-label="Índice de esta página" className="lg:col-span-3">
             <div className="lg:sticky lg:top-28">
               <p className="text-body-sm font-medium uppercase tracking-[0.1em] text-text-2">En esta página</p>
-              <ul className="mt-4 border-t border-text">
+              <ul className="mt-4 border-t border-navy">
                 {indice.map((s) => (
                   <li key={s.href} className="border-b border-line py-4">
-                    <a href={s.href} className="text-body font-medium text-navy underline-offset-4 hover:underline">
+                    <a href={s.href} className="text-body font-medium text-vino underline-offset-4 hover:text-vino-hover hover:underline">
                       {s.label}
                     </a>
                     <ul className="mt-2 flex flex-col">
@@ -71,7 +71,7 @@ export default function LegalPage() {
                         <li key={h.href}>
                           <a
                             href={h.href}
-                            className="inline-flex min-h-9 items-center text-body-sm text-text-2 underline-offset-4 hover:text-navy hover:underline"
+                            className="inline-flex min-h-9 items-center text-body-sm text-text-2 underline-offset-4 hover:text-vino hover:underline"
                           >
                             {h.label}
                           </a>

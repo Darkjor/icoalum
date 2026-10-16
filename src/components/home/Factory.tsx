@@ -30,8 +30,8 @@ export function Factory() {
         <div className="flex flex-col justify-end xl:col-span-7">
           <ol className="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-4 md:gap-y-0">
             {steps.map((s) => (
-              <li key={s.verbo} className="border-t border-text pt-5">
-                <h3 className="display text-h3 text-text">{s.verbo}</h3>
+              <li key={s.verbo} className="border-t border-navy pt-5">
+                <h3 className="display text-h3 text-navy">{s.verbo}</h3>
                 <p className="mt-3 text-body text-text-2">{s.linea}</p>
               </li>
             ))}

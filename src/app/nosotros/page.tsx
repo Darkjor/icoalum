@@ -48,7 +48,7 @@ function TimelineRow({
     <li className="grid gap-3 border-t border-line py-8 md:grid-cols-12 md:gap-6 md:py-10">
       <p className="display text-h1 text-text md:col-span-4">{year}</p>
       <div className="md:col-span-8">
-        <h3 className="display text-h3 text-text">{title}</h3>
+        <h3 className="display text-h3 text-navy">{title}</h3>
         <div className="mt-3 max-w-[52ch] text-body text-text-2">{children}</div>
       </div>
     </li>
@@ -111,9 +111,9 @@ export default async function NosotrosPage() {
         </Reveal>
         <ul className="mt-12 grid gap-10 md:mt-16 md:grid-cols-3 md:gap-8">
           {values.map(({ icon: Icon, titulo, texto }) => (
-            <li key={titulo} className="border-t border-text pt-6">
+            <li key={titulo} className="border-t border-navy pt-6">
               <Icon aria-hidden weight="light" size={40} className="text-navy" />
-              <h3 className="display mt-5 max-w-[16ch] text-h3 text-text">{titulo}</h3>
+              <h3 className="display mt-5 max-w-[16ch] text-h3 text-navy">{titulo}</h3>
               <p className="mt-3 max-w-[38ch] text-body text-text-2">{texto}</p>
             </li>
           ))}

@@ -46,8 +46,8 @@ export function ProjectsExplorer({ projects }: { projects: Project[] }) {
               onClick={() => elegir(f.param)}
               className={`h-11 border px-5 text-body font-medium transition-colors duration-150 active:translate-y-px ${
                 pulsado
-                  ? "border-text bg-text text-bg"
-                  : "border-line bg-transparent text-text hover:border-text"
+                  ? "border-cta bg-cta text-on-cta"
+                  : "border-line bg-transparent text-text hover:border-navy hover:text-navy"
               }`}
             >
               {f.label}
@@ -69,7 +69,7 @@ export function ProjectsExplorer({ projects }: { projects: Project[] }) {
           <ProjectGrid items={visibles} />
         ) : (
           <div className="border border-line p-8 md:p-12">
-            <p className="display text-h3 text-text">
+            <p className="display text-h3 text-navy">
               Aún no publicamos proyectos {activo.tipo ? `de tipo ${activo.tipo.toLowerCase()}` : ""}.
             </p>
             <p className="mt-3 max-w-[48ch] text-body text-text-2">

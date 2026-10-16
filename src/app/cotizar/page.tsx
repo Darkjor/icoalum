@@ -50,7 +50,7 @@ export default function CotizarPage({
             </Suspense>
 
             <div className="mt-16 border-t border-line pt-8">
-              <h2 className="display text-h3 text-text">¿Prefieres hablar con nosotros?</h2>
+              <h2 className="display text-h3 text-navy">¿Prefieres hablar con nosotros?</h2>
               <p className="mt-2 max-w-[48ch] text-body text-text-2">
                 Llámanos o escríbenos y platicamos tu proyecto.
               </p>

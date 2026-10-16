@@ -1,8 +1,30 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------
-   Tokens: "Marco y cristal" (spec: direccion-visual.md, seccion 4)
+   Tokens: "Marco y cristal" con paleta de marca Ico Alum.
    Un solo tema por pagina. Noche solo por prefers-color-scheme.
+
+   REPARTO DE MARCA (medido del logo y del sitio anterior)
+   - VINO  #940C11: accion y marca sobre fondos CLAROS (boton primario, enlaces
+           del cuerpo, eyebrows, filtro activo, paso activo, barras de titular).
+   - AZUL  #044269 (--navy): encabezados secundarios, enlaces secundarios, bordes.
+           #032F4A (--navy-deep): bandas oscuras (header, footer, cifras, CTA final,
+           PageHeader).
+   - AMBAR #EC9442: destello y CTA sobre fondos OSCUROS (navy-deep o foto con velo),
+           cifras grandes de la franja, barra de 3px como eco del trazo del logo.
+
+   CONTRASTES WCAG (calculados)
+   - Texto #FAFBFC sobre vino #940C11: 8.7:1; sobre vino hover #780A0E: 11:1.
+   - Vino #940C11 como texto sobre --bg #F3F5F7: 8.3:1.
+   - Texto #F3F5F7 sobre navy-deep #032F4A: 12.7:1; #BFD0DC sobre navy-deep: ~9:1.
+   - Texto tinta #0B1A26 sobre ambar #EC9442: 7.5:1 (boton en oscuro).
+   - Ambar sobre navy-deep: 5.9:1 (cifras >= 36px, barras, foco, hover de enlaces).
+   - Modo noche: vino de texto #F08A8E sobre #0A141C: 7.7:1.
+
+   REGLAS DURAS
+   1. NUNCA vino sobre azul (1.17:1).
+   2. NUNCA ambar como texto pequeno sobre claro (2.2:1): sobre claro solo barra
+      decorativa de 3px o relleno con texto oscuro.
    ------------------------------------------------------------------ */
 :root {
   --bg: #f3f5f7;
@@ -11,22 +33,39 @@
   --line: #cdd4db;
   --text: #0b1a26;
   --text-2: #4f5b67;
-  --navy: #044269;
-  --accent: #ee9340; /* SOLO relleno de boton con texto --on-accent */
-  --accent-hover: #f7a659;
+  --navy: #044269; /* azul de marca: encabezados y enlaces secundarios */
+  --navy-deep: #032f4a; /* bandas oscuras de marca */
+  --on-deep: #f3f5f7; /* texto sobre navy-deep */
+  --on-deep-2: #bfd0dc; /* texto secundario sobre navy-deep */
+
+  --vino: #940c11; /* texto/enlace/acento sobre claro */
+  --vino-hover: #780a0e;
+  --on-vino: #fafbfc;
+
+  --amber: #ec9442; /* destello sobre oscuro; nunca texto pequeno sobre claro */
+  --accent: #ec9442; /* CTA sobre fondo oscuro (relleno con --on-accent) */
+  --accent-hover: #f4a55c;
   --on-accent: #0b1a26;
-  --ring: #044269;
-  --danger: #a32a1d; /* texto de error de formulario */
+
+  /* CTA primario sobre fondo claro: vino de dia, ambar de noche */
+  --cta: #940c11;
+  --cta-hover: #780a0e;
+  --on-cta: #fafbfc;
+
+  --ring: #044269; /* foco sobre claro (en bandas oscuras: .on-dark) */
+  --danger: #a32a1d; /* texto de error de formulario sobre claro */
+  --danger-deep: #ffb4b4; /* error sobre navy-deep */
 
   /* Extras de la fundacion (no estan en el spec, no cambian el tema) */
-  --ink: #0b1a26; /* velo sobre foto */
+  --ink: #0b1a26; /* velo/texto tinta fijo */
   --photo: #e9eef2; /* texto sobre foto, nunca #fff */
   --alu: #aab5bf; /* canto de aluminio del panel corredizo */
+  --tile: #fafbfc; /* baldosa clara del logo sobre bandas oscuras (no cambia de noche) */
 
-  /* Placeholder: cristal con reflejos en tonos aluminio-azulados */
-  --glass-1: #d9e1e8;
-  --glass-2: #bccad5;
-  --glass-3: #a6b9c7;
+  /* Placeholder: cristal en tonos azul de marca */
+  --glass-1: #d3e0ea;
+  --glass-2: #b3c9da;
+  --glass-3: #94b0c6;
   --glass-shine: rgb(233 238 242 / 0.5);
   --glass-shine-soft: rgb(233 238 242 / 0.26);
 
@@ -44,15 +83,27 @@
     --navy: #5c9cc9;
     --ring: #5c9cc9;
     --danger: #ff9b91;
-    /* --accent, --accent-hover y --on-accent no cambian */
+    --vino: #f08a8e; /* 7.7:1 sobre #0a141c */
+    --vino-hover: #f5a3a6;
+    --on-vino: #0a141c;
+    /* CTA primario de noche: ambar con texto tinta */
+    --cta: #ec9442;
+    --cta-hover: #f4a55c;
+    --on-cta: #0b1a26;
+    /* --navy-deep, --amber y --accent* no cambian */
 
     --alu: #5b7080;
-    --glass-1: #1b2f3d;
-    --glass-2: #152a38;
-    --glass-3: #102230;
+    --glass-1: #1a3042;
+    --glass-2: #142a3b;
+    --glass-3: #0f2233;
     --glass-shine: rgb(143 176 201 / 0.14);
     --glass-shine-soft: rgb(143 176 201 / 0.07);
   }
+}
+
+/* Banda oscura de marca: el foco pasa a ambar (5.9:1 sobre navy-deep) */
+.on-dark {
+  --ring: #ec9442;
 }
 
 /* ------------------------------------------------------------------
@@ -66,6 +117,18 @@
   --color-text: var(--text);
   --color-text-2: var(--text-2);
   --color-navy: var(--navy);
+  --color-navy-deep: var(--navy-deep);
+  --color-on-deep: var(--on-deep);
+  --color-on-deep-2: var(--on-deep-2);
+  --color-vino: var(--vino);
+  --color-vino-hover: var(--vino-hover);
+  --color-on-vino: var(--on-vino);
+  --color-amber: var(--amber);
+  --color-cta: var(--cta);
+  --color-cta-hover: var(--cta-hover);
+  --color-on-cta: var(--on-cta);
+  --color-danger-deep: var(--danger-deep);
+  --color-tile: var(--tile);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
   --color-on-accent: var(--on-accent);
@@ -151,15 +214,16 @@
   }
 
   /* El header fijo no tapa el contenido en paginas sin hero */
-  main:not(:has([data-hero])) {
+  main:not(:has([data-hero])):not(:has([data-band-top])) {
     padding-top: 72px;
   }
 }
 
-/* Placeholder: cristal con reflejos diagonales suaves */
+/* Placeholder: cristal azul con reflejos diagonales y destello vino/ambar en el canto */
 .placeholder-glass {
   background-color: var(--glass-2);
   background-image:
+    linear-gradient(90deg, rgb(148 12 17 / 0.55), rgb(236 148 66 / 0.65) 70%, transparent),
     linear-gradient(
       112deg,
       transparent 0 34%,
@@ -175,6 +239,17 @@
       transparent 70% 100%
     ),
     linear-gradient(160deg, var(--glass-1) 0%, var(--glass-2) 48%, var(--glass-3) 100%);
+  background-size:
+    100% 3px,
+    auto,
+    auto,
+    auto;
+  background-position:
+    0 100%,
+    0 0,
+    0 0,
+    0 0;
+  background-repeat: no-repeat;
 }
 
 /* Marquesina de marcas (la unica del sitio): CSS puro, solo transform */

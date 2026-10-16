@@ -1,18 +1,25 @@
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { TrackLink } from "@/components/TrackLink";
 
-export type ButtonVariant = "primary" | "secondary" | "onPhoto";
+/**
+ * Variantes por contexto, misma jerarquia en cada fondo:
+ * - claro: primary (vino) y secondary (borde azul)
+ * - oscuro (navy-deep o foto con velo): primaryOnDark (ambar) y secondaryOnDark (borde claro)
+ * El foco lo da --ring: azul sobre claro, ambar dentro de `.on-dark`.
+ */
+export type ButtonVariant = "primary" | "primaryOnDark" | "secondary" | "secondaryOnDark";
 
 const base =
   "inline-flex h-[52px] items-center justify-center gap-2 whitespace-nowrap px-7 text-body font-medium leading-none transition-colors duration-150 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50";
 
 const variants: Record<ButtonVariant, string> = {
-  // Ambar: SOLO relleno de boton con texto tinta
-  primary: "bg-accent text-on-accent hover:bg-accent-hover",
-  secondary: "border border-text text-text hover:bg-surface-2",
-  // Sobre foto: velo de tinta, texto claro, anillo de foco claro
-  onPhoto:
-    "border border-photo/60 bg-ink/45 text-photo hover:bg-ink/65 focus-visible:outline-photo",
+  // Vino sobre claro (de noche pasa a ambar con texto tinta: ver --cta)
+  primary: "bg-cta text-on-cta hover:bg-cta-hover",
+  // Ambar: SOLO relleno con texto tinta, sobre navy-deep o foto con velo
+  primaryOnDark: "bg-accent text-on-accent hover:bg-accent-hover focus-visible:outline-amber",
+  secondary: "border border-navy text-navy hover:bg-surface-2",
+  secondaryOnDark:
+    "border border-on-deep text-on-deep hover:bg-on-deep/10 focus-visible:outline-amber",
 };
 
 export function buttonClasses(variant: ButtonVariant = "primary", className = "") {

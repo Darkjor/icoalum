@@ -55,9 +55,9 @@ export function WhyIcoAlum() {
             <li key={titulo} className={i > 0 ? "mt-10 border-t border-line pt-10" : ""}>
               <Reveal>
                 <div className="flex gap-6">
-                  <Icon aria-hidden weight="light" size={40} className="mt-1 shrink-0 text-navy" />
+                  <Icon aria-hidden weight="light" size={40} className="mt-1 shrink-0 text-vino" />
                   <div>
-                    <h3 className="display text-h3 text-text">{titulo}</h3>
+                    <h3 className="display text-h3 text-navy">{titulo}</h3>
                     <p className="mt-2 max-w-[48ch] text-body text-text-2">{linea}</p>
                   </div>
                 </div>

@@ -143,7 +143,7 @@ function FieldError({ id, message }: { id: string; message?: string }) {
 }
 
 const optionClass =
-  "flex min-h-12 cursor-pointer items-center gap-3 border border-line bg-surface px-4 py-2 text-body text-text has-[:checked]:border-navy has-[:checked]:bg-surface-2 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-ring";
+  "flex min-h-12 cursor-pointer items-center gap-3 border border-line bg-surface px-4 py-2 text-body text-text has-[:checked]:border-cta has-[:checked]:bg-surface-2 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-ring";
 
 export function QuoteWizard({ initialService }: { initialService?: string }) {
   const formRef = useRef<HTMLFormElement>(null);
@@ -367,14 +367,14 @@ export function QuoteWizard({ initialService }: { initialService?: string }) {
         <p className="mt-3 max-w-[48ch] text-body text-text-2">
           Revisaremos los datos de tu proyecto y te contactaremos por teléfono o correo. Si tienes
           prisa o algo que agregar, llámanos al{" "}
-          <a href={`tel:${site.phone.tel}`} className="text-navy underline underline-offset-4">
+          <a href={`tel:${site.phone.tel}`} className="text-vino underline underline-offset-4">
             {site.phone.display}
           </a>
           .
         </p>
         <p className="mt-6 text-body text-text">
           Mientras tanto, conoce{" "}
-          <Link href="/proyectos" className="text-navy underline underline-offset-4">
+          <Link href="/proyectos" className="text-vino underline underline-offset-4">
             nuestros proyectos
           </Link>
           .
@@ -463,7 +463,7 @@ export function QuoteWizard({ initialService }: { initialService?: string }) {
                         setValues((prev) => ({ ...prev, tipoProyecto: t }));
                         setError("tipoProyecto", undefined);
                       }}
-                      className="size-5 shrink-0 accent-navy"
+                      className="size-5 shrink-0 accent-cta"
                     />
                     {t}
                   </label>
@@ -504,7 +504,7 @@ export function QuoteWizard({ initialService }: { initialService?: string }) {
                     value={s.value}
                     checked={values.sistemas.includes(s.value)}
                     onChange={() => toggleSystem(s.value)}
-                    className="size-5 shrink-0 accent-navy"
+                    className="size-5 shrink-0 accent-cta"
                   />
                   {s.label}
                 </label>
@@ -532,7 +532,7 @@ export function QuoteWizard({ initialService }: { initialService?: string }) {
                 onDragLeave={() => setDragging(false)}
                 onDrop={onDrop}
                 className={`flex flex-col items-start gap-4 border border-dashed p-5 sm:flex-row sm:items-center ${
-                  dragging ? "border-navy bg-surface-2" : "border-text/60 bg-surface"
+                  dragging ? "border-cta bg-surface-2" : "border-text/60 bg-surface"
                 }`}
               >
                 <Button
@@ -563,7 +563,7 @@ export function QuoteWizard({ initialService }: { initialService?: string }) {
                         type="button"
                         onClick={() => removeFile(i)}
                         aria-label={`Quitar ${f.name}`}
-                        className="inline-flex min-h-11 shrink-0 items-center gap-1 px-4 text-body-sm text-navy hover:underline"
+                        className="inline-flex min-h-11 shrink-0 items-center gap-1 px-4 text-body-sm text-vino hover:underline"
                       >
                         <X aria-hidden weight="light" size={20} />
                         Quitar
@@ -597,7 +597,7 @@ export function QuoteWizard({ initialService }: { initialService?: string }) {
                 href="/legal"
                 target="_blank"
                 rel="noopener"
-                className="inline-flex min-h-11 items-center text-navy underline underline-offset-4"
+                className="inline-flex min-h-11 items-center text-vino underline underline-offset-4"
               >
                 aviso de privacidad<span className="sr-only"> (se abre en una pestaña nueva)</span>
               </Link>
@@ -631,10 +631,10 @@ export function QuoteWizard({ initialService }: { initialService?: string }) {
           {STEPS.map((s, i) => {
             const done = i < stage;
             const current = i === stage;
-            const bar = done || current ? "bg-navy" : "bg-line";
+            const bar = done || current ? "bg-cta" : "bg-line";
             const label = (
               <>
-                <span aria-hidden className={`block h-1 w-full ${bar}`} />
+                <span aria-hidden className={`block h-[3px] w-full ${bar}`} />
                 <span
                   className={`mt-2 block text-body-sm ${current ? "font-medium text-text" : done ? "text-navy" : "text-text-2"}`}
                 >
@@ -665,7 +665,7 @@ export function QuoteWizard({ initialService }: { initialService?: string }) {
       <h2
         ref={headingRef}
         tabIndex={-1}
-        className="display text-h3 text-text outline-none"
+        className="display text-h3 text-navy outline-none"
       >
         {heading}
       </h2>
@@ -685,7 +685,7 @@ export function QuoteWizard({ initialService }: { initialService?: string }) {
                 <button
                   type="button"
                   onClick={() => goTo(r.section)}
-                  className="inline-flex min-h-11 items-center px-2 text-body-sm text-navy underline-offset-4 hover:underline"
+                  className="inline-flex min-h-11 items-center px-2 text-body-sm text-vino underline-offset-4 hover:underline"
                 >
                   Editar<span className="sr-only"> {r.label}</span>
                 </button>

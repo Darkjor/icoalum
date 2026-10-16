@@ -31,7 +31,7 @@ function VerServicio({ s }: { s: Service }) {
   return (
     <Link
       href={`/servicios/${s.slug}`}
-      className="group/link mt-6 inline-flex items-center gap-3 text-body font-medium text-navy"
+      className="group/link mt-6 inline-flex items-center gap-3 text-body font-medium text-vino"
     >
       <span className="underline-offset-4 group-hover/link:underline">Ver {s.nombre.toLowerCase()}</span>
       <ArrowRight
@@ -49,7 +49,7 @@ function ServiceText({ s, titleClass = "text-h2" }: { s: Service; titleClass?: s
   return (
     <div>
       <h2 className={`display text-text ${titleClass}`}>
-        <Link href={`/servicios/${s.slug}`} className="hover:text-navy">
+        <Link href={`/servicios/${s.slug}`} className="hover:text-vino">
           {s.nombre}
         </Link>
       </h2>
@@ -123,7 +123,7 @@ export default function ServiciosPage() {
               <div className="mt-8 grid grid-cols-1 gap-6 md:mt-10 md:grid-cols-12 md:gap-6">
                 <div className="md:col-span-5">
                   <h2 className="display text-h1 text-text">
-                    <Link href={`/servicios/${aluminio.slug}`} className="hover:text-navy">
+                    <Link href={`/servicios/${aluminio.slug}`} className="hover:text-vino">
                       {aluminio.nombre}
                     </Link>
                   </h2>

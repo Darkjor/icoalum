@@ -24,7 +24,7 @@ function Row({ duplicate = false }: { duplicate?: boolean }) {
       {brands.map((b) => (
         <li
           key={b}
-          className="display whitespace-nowrap text-h3 font-medium text-text-2"
+          className="display whitespace-nowrap text-h3 font-medium text-navy"
           style={{ fontWeight: 500 }}
         >
           {b}

@@ -17,7 +17,7 @@ export const metadata = buildMetadata({
   path: "/contacto",
 });
 
-const linkClass = "text-navy underline-offset-4 hover:underline";
+const linkClass = "text-vino underline-offset-4 hover:text-vino-hover hover:underline";
 
 function Row({ icon, label, children }: { icon: ReactNode; label: string; children: ReactNode }) {
   return (
@@ -42,7 +42,7 @@ export default function ContactoPage() {
       <Section tone="bg" aria-labelledby="pagina-titulo" className="!py-16 md:!py-24">
         <div className="grid gap-16 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-5">
-            <h2 className="display text-h3 text-text">Datos de contacto</h2>
+            <h2 className="display text-h3 text-navy">Datos de contacto</h2>
             <dl className="mt-6">
               <Row icon={<MapPin aria-hidden weight="light" size={28} />} label="Dirección">
                 <address className="not-italic">{fullAddress}</address>
@@ -75,7 +75,7 @@ export default function ContactoPage() {
           </div>
 
           <div className="lg:col-span-6 lg:col-start-7">
-            <h2 className="display text-h3 text-text">Escríbenos</h2>
+            <h2 className="display text-h3 text-navy">Escríbenos</h2>
             <p className="mt-3 max-w-[44ch] text-body text-text-2">
               Cuéntanos qué necesitas y te respondemos por correo.
             </p>

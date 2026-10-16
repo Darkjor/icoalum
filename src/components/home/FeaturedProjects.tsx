@@ -58,7 +58,7 @@ export function FeaturedProjects() {
                     </div>
                   </PaneReveal>
                 </Frame>
-                <h3 className="display mt-5 text-h3 text-text">{p.nombre}</h3>
+                <h3 className="display mt-5 text-h3 text-navy">{p.nombre}</h3>
                 <p className="mt-1 text-body text-text-2">
                   {p.tipo}, {p.ubicacion}
                 </p>

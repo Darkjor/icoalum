@@ -147,11 +147,11 @@ export default async function ProyectoPage({ params }: Props) {
                 aria-hidden
                 weight="light"
                 size={32}
-                className="shrink-0 text-navy transition-transform duration-300 group-hover:-translate-x-1.5 motion-reduce:transition-none"
+                className="shrink-0 text-navy transition-[transform,color] duration-300 group-hover:text-vino group-hover:-translate-x-1.5 motion-reduce:transition-none"
               />
               <span>
                 <span className="block text-body-sm text-text-2">Proyecto anterior</span>
-                <span className="display block text-h3 text-text group-hover:text-navy">
+                <span className="display block text-h3 text-navy group-hover:text-vino">
                   {neighbors.prev.nombre}
                 </span>
               </span>
@@ -162,7 +162,7 @@ export default async function ProyectoPage({ params }: Props) {
             >
               <span className="md:ml-auto">
                 <span className="block text-body-sm text-text-2">Proyecto siguiente</span>
-                <span className="display block text-h3 text-text group-hover:text-navy">
+                <span className="display block text-h3 text-navy group-hover:text-vino">
                   {neighbors.next.nombre}
                 </span>
               </span>
@@ -170,7 +170,7 @@ export default async function ProyectoPage({ params }: Props) {
                 aria-hidden
                 weight="light"
                 size={32}
-                className="shrink-0 text-navy transition-transform duration-300 group-hover:translate-x-1.5 motion-reduce:transition-none"
+                className="shrink-0 text-navy transition-[transform,color] duration-300 group-hover:text-vino group-hover:translate-x-1.5 motion-reduce:transition-none"
               />
             </Link>
           </Container>

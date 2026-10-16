@@ -24,7 +24,7 @@ export function CookieBanner() {
     >
       <p className="text-body-sm text-text">
         Usamos analítica anónima para mejorar el sitio, solo si la aceptas.{" "}
-        <Link href="/legal" className="text-navy underline underline-offset-4">
+        <Link href="/legal" className="text-vino underline underline-offset-4">
           Aviso de privacidad
         </Link>
       </p>

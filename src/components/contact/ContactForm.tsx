@@ -77,7 +77,7 @@ export function ContactForm() {
     return (
       <div role="status" className="border border-line bg-surface p-8">
         <CheckCircle aria-hidden weight="light" size={40} className="text-navy" />
-        <p className="display mt-4 text-h3 text-text">Recibimos tu mensaje.</p>
+        <p className="display mt-4 text-h3 text-navy">Recibimos tu mensaje.</p>
         <p className="mt-2 max-w-[44ch] text-body text-text-2">
           Te respondemos lo antes posible al correo que nos dejaste.
         </p>

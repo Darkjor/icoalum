@@ -54,7 +54,7 @@ export function FactoryProcess({ steps }: { steps: readonly ProcessStep[] }) {
             ref={(el) => {
               rows.current[i] = el;
             }}
-            className="border-t border-text py-10 md:py-12 lg:flex lg:min-h-[60vh] lg:flex-col lg:justify-center"
+            className="border-t border-navy py-10 md:py-12 lg:flex lg:min-h-[60vh] lg:flex-col lg:justify-center"
           >
             <div className="mb-8 lg:hidden">
               <Frame ratio="4/3" pendiente={s.foto} />
