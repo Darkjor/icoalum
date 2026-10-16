@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ico Alum (icoalum.net)
 
-## Getting Started
+Sitio de Ico Alum: cancelería de aluminio, PVC, cristal templado y fachadas, Zapopan, Jalisco, desde 1979.
 
-First, run the development server:
+## Stack
+
+Next.js 16 (App Router, Cache Components) · React 19 · Tailwind v4 · TypeScript · Motion (`motion/react`) · Phosphor (peso light) · `next/font` (Archivo, Geist, Geist Mono).
+
+> Next 16 cambia APIs: antes de tocar metadata, redirects, params, fuentes o caché, lee la guía en `node_modules/next/dist/docs/`.
+
+## Desarrollo
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # compila y prerenderiza
+npx tsc --noEmit
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Estructura
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/app/            rutas, layout global, robots.ts, sitemap.ts
+src/components/     Header, Footer, WhatsAppFloat, CookieBanner, Analytics, Logo, TrackLink
+src/components/ui/  Button, Eyebrow, Container, Section, Frame, Placeholder, PaneReveal, Reveal
+src/lib/site.ts     única fuente de datos de la empresa (teléfono, correos, dirección, WhatsApp)
+src/lib/routes.ts   rutas de la arquitectura: sitemap, menú, rutas con hero
+src/lib/seo.ts      buildMetadata({ title, description, path })
+src/lib/analytics.ts track(evento, datos) y consentimiento
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Tokens y escala tipográfica: `src/app/globals.css`. Spec visual: `Proyectos/icoalum/diseno/2026-10-16-direccion-visual/` en el vault de Company OS.
 
-## Learn More
+## Reglas de diseño
 
-To learn more about Next.js, take a look at the following resources:
+Esquinas rectas; ámbar solo como relleno de botón con texto tinta; Phosphor light; sin serif; solo `transform` y `opacity` en animación; sin guiones largos (em/en dash) en ningún texto; el CTA de cotizar siempre se llama "Cotizar proyecto".
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Cómo agregar una página o un proyecto
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Crea `src/app/<ruta>/page.tsx` y exporta `metadata = buildMetadata({ title, description, path })`.
+2. Agrega la ruta a `src/lib/routes.ts` (entra al sitemap solo).
+3. Si el primer bloque es un hero oscuro a sangre: ponle `data-hero` al elemento y agrega la ruta a `heroRoutes`. Sin eso, el header nace sólido y `main` deja 72px de aire arriba.
+4. Imágenes: `<Frame src alt ratio />`; si aún no hay foto, `<Frame pendiente="descripción" />` muestra el Placeholder `[PENDIENTE CLIENTE]`.
+5. Proyectos: cuando exista el listado, un dato por proyecto (slug, título, ubicación, tipología, imágenes) y una ruta `src/app/proyectos/[slug]`. Con Cache Components, define `generateStaticParams`.
 
-## Deploy on Vercel
+## Variables de entorno
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Ninguna es obligatoria para compilar.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Variable | Uso |
+|---|---|
+| `NEXT_PUBLIC_SITE_URL` | URL base (default `https://icoalum.net`) |
+| `NEXT_PUBLIC_WHATSAPP` | Número con lada de país, solo dígitos. Vacío = no hay botón flotante |
+| `NEXT_PUBLIC_GA_ID` | Medición GA4; solo carga tras aceptar cookies |
+| `RESEND_API_KEY` | Correo del formulario de cotización (servidor) |
+| `SUPABASE_URL` | Base de datos (servidor) |
+| `SUPABASE_SERVICE_ROLE_KEY` | Clave de servicio de Supabase (solo servidor, nunca `NEXT_PUBLIC_`) |

@@ -1,26 +1,196 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------
+   Tokens: "Marco y cristal" (spec: direccion-visual.md, seccion 4)
+   Un solo tema por pagina. Noche solo por prefers-color-scheme.
+   ------------------------------------------------------------------ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  --bg: #f3f5f7;
+  --surface: #fafbfc;
+  --surface-2: #e6eaee;
+  --line: #cdd4db;
+  --text: #0b1a26;
+  --text-2: #4f5b67;
+  --navy: #044269;
+  --accent: #ee9340; /* SOLO relleno de boton con texto --on-accent */
+  --accent-hover: #f7a659;
+  --on-accent: #0b1a26;
+  --ring: #044269;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Extras de la fundacion (no estan en el spec, no cambian el tema) */
+  --ink: #0b1a26; /* velo sobre foto */
+  --photo: #e9eef2; /* texto sobre foto, nunca #fff */
+  --alu: #aab5bf; /* canto de aluminio del panel corredizo */
+
+  /* Placeholder: cristal con reflejos en tonos aluminio-azulados */
+  --glass-1: #d9e1e8;
+  --glass-2: #bccad5;
+  --glass-3: #a6b9c7;
+  --glass-shine: rgb(233 238 242 / 0.5);
+  --glass-shine-soft: rgb(233 238 242 / 0.26);
+
+  color-scheme: light dark;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg: #0a141c;
+    --surface: #101e29;
+    --surface-2: #172836;
+    --line: #263a49;
+    --text: #e9eef2;
+    --text-2: #9fadb9;
+    --navy: #5c9cc9;
+    --ring: #5c9cc9;
+    /* --accent, --accent-hover y --on-accent no cambian */
+
+    --alu: #5b7080;
+    --glass-1: #1b2f3d;
+    --glass-2: #152a38;
+    --glass-3: #102230;
+    --glass-shine: rgb(143 176 201 / 0.14);
+    --glass-shine-soft: rgb(143 176 201 / 0.07);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ------------------------------------------------------------------
+   Tailwind v4: tokens como utilidades (bg-bg, text-text-2, border-line...)
+   ------------------------------------------------------------------ */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-text: var(--text);
+  --color-text-2: var(--text-2);
+  --color-navy: var(--navy);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-on-accent: var(--on-accent);
+  --color-ring: var(--ring);
+  --color-ink: var(--ink);
+  --color-photo: var(--photo);
+  --color-alu: var(--alu);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* Esquinas rectas en todo el sitio: sin utilidades de radio */
+  --radius-*: initial;
+
+  /* Escala 14 / 16 / 18 / 24 / 36 / 56 / 88 (fluida) */
+  --text-body-sm: 0.875rem;
+  --text-body-sm--line-height: 1.5;
+  --text-body: 1rem;
+  --text-body--line-height: 1.65;
+  --text-lead: clamp(1.0625rem, 1rem + 0.3vw, 1.125rem);
+  --text-lead--line-height: 1.6;
+  --text-h3: clamp(1.25rem, 1.05rem + 0.8vw, 1.5rem);
+  --text-h3--line-height: 1.25;
+  --text-h2: clamp(1.75rem, 1.3rem + 1.8vw, 2.25rem);
+  --text-h2--line-height: 1.12;
+  --text-h1: clamp(2.25rem, 1.4rem + 3.4vw, 3.5rem);
+  --text-h1--line-height: 1.04;
+  --text-display: clamp(2.75rem, 1.2rem + 6.2vw, 5.5rem);
+  --text-display--line-height: 1.02;
+}
+
+/* Titulares: Archivo ancho ~112, peso medio, tracking apretado */
+@utility display {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 112;
+  font-weight: 560;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+@utility measure {
+  max-width: 65ch;
+}
+
+@layer base {
+  html {
+    background: var(--bg);
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 88px;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  /* Foco visible: anillo 2px con separacion */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+  }
+
+  /* El header fijo no tapa el contenido en paginas sin hero */
+  main:not(:has([data-hero])) {
+    padding-top: 72px;
+  }
+}
+
+/* Placeholder: cristal con reflejos diagonales suaves */
+.placeholder-glass {
+  background-color: var(--glass-2);
+  background-image:
+    linear-gradient(
+      112deg,
+      transparent 0 34%,
+      var(--glass-shine) 34% 41%,
+      transparent 41% 47%,
+      var(--glass-shine-soft) 47% 50%,
+      transparent 50% 100%
+    ),
+    linear-gradient(
+      112deg,
+      transparent 0 66%,
+      var(--glass-shine-soft) 66% 70%,
+      transparent 70% 100%
+    ),
+    linear-gradient(160deg, var(--glass-1) 0%, var(--glass-2) 48%, var(--glass-3) 100%);
+}
+
+/* Movimiento reducido: sin paneles, sin desplazamientos, todo visible */
+@media (prefers-reduced-motion: reduce) {
+  [data-pane] {
+    display: none !important;
+  }
+
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
