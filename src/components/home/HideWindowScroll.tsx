@@ -24,16 +24,22 @@ function MomentText({
   const first = index === 0;
   const last = index === 2;
   const fade = 0.05;
-  const opacity = useTransform(
-    progress,
-    [start - fade, start + fade, end - fade, end + fade],
-    [first ? 1 : 0, 1, 1, last ? 1 : 0],
-  );
-  const y = useTransform(
-    progress,
-    [start - fade, start + fade, end - fade, end + fade],
-    [first ? 0 : 32, 0, 0, last ? 0 : -32],
-  );
+  // Los rangos deben quedar dentro de [0, 1] y en orden creciente: Motion los pasa como
+  // offsets a una animación nativa (ScrollTimeline) y fuera de ese intervalo el navegador lanza
+  // "Offsets must be monotonically non-decreasing" y la página no carga.
+  // El primero ya está visible en 0 (sin tramo de entrada); el último se queda visible hasta 1.
+  const input = [
+    ...(first ? [0] : [start - fade, start + fade]),
+    ...(last ? [1] : [end - fade, end + fade]),
+  ];
+  const opacity = useTransform(progress, input, [
+    ...(first ? [1] : [0, 1]),
+    ...(last ? [1] : [1, 0]),
+  ]);
+  const y = useTransform(progress, input, [
+    ...(first ? [0] : [32, 0]),
+    ...(last ? [0] : [0, -32]),
+  ]);
 
   return (
     <motion.div style={{ opacity, y }} className="absolute inset-x-0 bottom-0 will-change-transform">
