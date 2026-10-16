@@ -17,6 +17,9 @@ export const QUOTE_SYSTEMS = [
   { value: "calculo-estructural", label: "Cálculo estructural" },
 ] as const;
 
+/** Valor que se envía cuando la persona elige "Aún no lo sé" (cuenta como sistema válido). */
+export const SYSTEM_UNDECIDED = "por-definir";
+
 export type QuoteField =
   | "tipoProyecto"
   | "ubicacion"
@@ -157,7 +160,7 @@ export function validateQuoteField(
   if (field === "sistemas") {
     const list = Array.isArray(value) ? value : [value];
     if (list.length === 0) return "Elige al menos un sistema de interés.";
-    const valid = QUOTE_SYSTEMS.map((s) => s.value) as string[];
+    const valid = [...QUOTE_SYSTEMS.map((s) => s.value), SYSTEM_UNDECIDED] as string[];
     if (list.some((s) => !valid.includes(s))) return "Elige sistemas de la lista.";
     return undefined;
   }

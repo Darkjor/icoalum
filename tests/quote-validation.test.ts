@@ -39,6 +39,10 @@ test("rechaza tipo, sistemas, correo y teléfono inválidos", () => {
   assert.ok(validateQuote({ ...valido, sistemas: [] }, NOW).sistemas);
 });
 
+test('"Aún no lo sé" cuenta como sistema válido', () => {
+  assert.deepEqual(validateQuote({ ...valido, sistemas: ["por-definir"] }, NOW), {});
+});
+
 test("metros: número positivo", () => {
   assert.equal(parseMeters("85"), 85);
   assert.equal(parseMeters("85,5"), 85.5);

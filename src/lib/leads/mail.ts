@@ -16,6 +16,7 @@ const SISTEMAS: Record<string, string> = {
   "canceleria-aluminio": "Cancelería de aluminio",
   "cristales-eficientes": "Cristales eficientes",
   "calculo-estructural": "Cálculo estructural",
+  "por-definir": "Aún no lo sabe",
 };
 
 export function buildSubject(lead: Lead): string {
