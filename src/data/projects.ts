@@ -51,6 +51,8 @@ function placeholder(
         pendiente: `foto de portada de ${nombre}`,
         ratio: ratioPortada,
       },
+      { alt: `${nombre}, detalle`, pendiente: `foto de detalle de ${nombre}`, ratio: "4/5" },
+      { alt: `${nombre}, interior`, pendiente: `foto interior de ${nombre}`, ratio: "4/3" },
     ],
     ratioPortada,
     pendiente: true,
@@ -67,3 +69,19 @@ export const projects: Project[] = [
 ];
 
 export const featuredProjects: Project[] = projects.slice(0, 6);
+
+export const projectTypes: ProjectType[] = ["Residencial", "Comercial", "Edificación vertical"];
+
+export function getProject(slug: string): Project | undefined {
+  return projects.find((p) => p.slug === slug);
+}
+
+/** Anterior y siguiente en el orden del listado (circular). */
+export function getNeighbors(slug: string): { prev: Project; next: Project } | null {
+  const i = projects.findIndex((p) => p.slug === slug);
+  if (i === -1 || projects.length < 2) return null;
+  return {
+    prev: projects[(i - 1 + projects.length) % projects.length],
+    next: projects[(i + 1) % projects.length],
+  };
+}

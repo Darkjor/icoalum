@@ -25,3 +25,28 @@ export function buildMetadata({ title, description, path }: Input): Metadata {
     },
   };
 }
+
+/** Ciudades y estado que atiende la empresa (misma cobertura que el JSON-LD global). */
+export const areaServed = [
+  { "@type": "City", name: "Guadalajara" },
+  { "@type": "City", name: "Zapopan" },
+  { "@type": "State", name: "Jalisco" },
+];
+
+/** Serializa JSON-LD para `<script type="application/ld+json">` sin cerrar el script por accidente. */
+export function jsonLdString(data: unknown): string {
+  return JSON.stringify(data).replace(/</g, "\u003c");
+}
+
+export function serviceJsonLd(input: { slug: string; nombre: string; descripcion: string; tipo: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: input.nombre,
+    serviceType: input.tipo,
+    description: input.descripcion,
+    url: `${site.url}/servicios/${input.slug}`,
+    provider: { "@type": "HomeAndConstructionBusiness", "@id": `${site.url}/#empresa`, name: site.name },
+    areaServed,
+  };
+}

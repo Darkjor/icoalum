@@ -41,7 +41,24 @@ Esquinas rectas; ámbar solo como relleno de botón con texto tinta; Phosphor li
 2. Agrega la ruta a `src/lib/routes.ts` (entra al sitemap solo).
 3. Si el primer bloque es un hero oscuro a sangre: ponle `data-hero` al elemento y agrega la ruta a `heroRoutes`. Sin eso, el header nace sólido y `main` deja 72px de aire arriba.
 4. Imágenes: `<Frame src alt ratio />`; si aún no hay foto, `<Frame pendiente="descripción" />` muestra el Placeholder `[PENDIENTE CLIENTE]`.
-5. Proyectos: cuando exista el listado, un dato por proyecto (slug, título, ubicación, tipología, imágenes) y una ruta `src/app/proyectos/[slug]`. Con Cache Components, define `generateStaticParams`.
+5. Proyectos: ver la sección siguiente.
+
+## Cómo agregar un proyecto nuevo
+
+1. Edita `src/data/projects.ts` y agrega (o reemplaza un marcador de) un objeto al arreglo `projects`. La ficha `/proyectos/<slug>`, el listado, los filtros, el anterior/siguiente y el sitemap salen solos.
+2. Campos de `Project`:
+   - `slug`: en minúsculas y con guiones; es la URL (`/proyectos/<slug>`).
+   - `nombre`, `ubicacion`, `descripcion`: texto de la ficha.
+   - `tipo`: `"Residencial"`, `"Comercial"` o `"Edificación vertical"` (define el filtro de `/proyectos`).
+   - `anio`: número, o `null` si aún no se confirma (la ficha muestra `[PENDIENTE CLIENTE]`).
+   - `sistemas`: lista de marcas o sistemas usados (por ejemplo `["Cuprum Eurovent", "Teufelbeschlag"]`); vacío muestra `[PENDIENTE CLIENTE]`.
+   - `galeria`: lista de `{ src, alt, pendiente, ratio }`. La primera es la portada. Sin `src` se muestra el Placeholder con el texto de `pendiente`.
+   - `ratioPortada`: `"4/5"`, `"16/9"` o `"1/1"` (portada del home).
+   - `pendiente`: `false` cuando los datos son reales. Con `true` la ficha lleva `noindex` y no entra al sitemap.
+3. Fotos en `public/proyectos/<slug>/` y se referencian como `src: "/proyectos/<slug>/portada.jpg"`. Usa `.jpg` o `.webp` optimizados; `next/image` genera los tamaños.
+4. `npm run build` y revisa `/proyectos/<slug>`.
+
+Los servicios viven igual en `src/data/services.ts` (un objeto por línea y una ruta `/servicios/<slug>` por cada uno).
 
 ## Variables de entorno
 
