@@ -18,11 +18,20 @@ export const hideWindowMoments = [
  * (HideWindowScroll). Con movimiento reducido: los 3 momentos apilados y estaticos.
  * Se alternan por CSS (motion-safe / motion-reduce) para no parpadear al hidratar.
  */
-export function HideWindow() {
+export function HideWindow({
+  showCta = true,
+  hero = false,
+}: {
+  /** Enlace "Conocer la innovacion" (se oculta en la propia pagina /innovacion). */
+  showCta?: boolean;
+  /** Primer bloque de la pagina: lleva `data-hero` y el titulo es el h1. */
+  hero?: boolean;
+} = {}) {
+  const Title = hero ? "h1" : "h2";
   return (
-    <section aria-label="Hide Window" className="bg-ink text-photo">
+    <section aria-label="Hide Window" data-hero={hero ? "" : undefined} className="bg-ink text-photo">
       <div className="hidden motion-safe:block">
-        <HideWindowScroll title={hideWindowTitle} moments={hideWindowMoments} />
+        <HideWindowScroll title={hideWindowTitle} moments={hideWindowMoments} showCta={showCta} titleAs={Title} />
       </div>
 
       <div className="motion-safe:hidden">
@@ -30,12 +39,12 @@ export function HideWindow() {
           <Placeholder
             ratio="16/9"
             label="foto a sangre de la fachada con Hide Window"
-            className="!min-h-[60dvh]"
+            className={hero ? "!min-h-[85dvh]" : "!min-h-[60dvh]"}
             labelClassName="!bottom-auto !top-24 !text-photo/80"
           />
           <div aria-hidden className="absolute inset-0 bg-ink/55" />
           <Container className="absolute inset-x-0 bottom-0 pb-10 md:pb-14">
-            <h2 className="display max-w-[22ch] text-h1 text-photo">{hideWindowTitle}</h2>
+            <Title className="display max-w-[22ch] text-h1 text-photo">{hideWindowTitle}</Title>
           </Container>
         </div>
         <Container className="py-14 md:py-20">
@@ -47,9 +56,11 @@ export function HideWindow() {
               </li>
             ))}
           </ol>
-          <Link href="/innovacion" className={buttonClasses("onPhoto", "mt-12")}>
-            Conocer la innovación
-          </Link>
+          {showCta ? (
+            <Link href="/innovacion" className={buttonClasses("onPhoto", "mt-12")}>
+              Conocer la innovación
+            </Link>
+          ) : null}
         </Container>
       </div>
     </section>

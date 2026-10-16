@@ -46,9 +46,13 @@ function MomentText({
 export function HideWindowScroll({
   title,
   moments,
+  showCta = true,
+  titleAs: Title = "h2",
 }: {
   title: string;
   moments: readonly Moment[];
+  showCta?: boolean;
+  titleAs?: "h1" | "h2";
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
@@ -70,19 +74,18 @@ export function HideWindowScroll({
         <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/55 via-60% to-ink/45" />
 
         <Container className="relative z-10 pb-12 pt-28 md:pb-16">
-          <h2 className="display max-w-[20ch] text-h1 text-photo">{title}</h2>
+          <Title className="display max-w-[20ch] text-h1 text-photo">{title}</Title>
           <div className="relative mt-8 h-44 md:h-40">
             {moments.map((m, i) => (
               <MomentText key={m.titulo} moment={m} index={i} progress={scrollYProgress} />
             ))}
           </div>
           <div className="mt-6 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-            <Link
-              href="/innovacion"
-              className={buttonClasses("onPhoto", "self-start")}
-            >
-              Conocer la innovación
-            </Link>
+            {showCta ? (
+              <Link href="/innovacion" className={buttonClasses("onPhoto", "self-start")}>
+                Conocer la innovación
+              </Link>
+            ) : null}
             <div aria-hidden className="h-px w-full max-w-xs bg-photo/25 sm:w-64">
               <motion.div style={{ scaleX: bar }} className="h-px origin-left bg-photo" />
             </div>

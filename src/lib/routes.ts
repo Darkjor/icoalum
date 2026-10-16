@@ -45,4 +45,4 @@ export const serviceNames: Record<string, string> = {
  * transparente. El hero debe llevar el atributo `data-hero`.
  * Cualquier otra ruta nace con el header solido.
  */
-export const heroRoutes: string[] = ["/"];
+export const heroRoutes: string[] = ["/", "/innovacion"];
