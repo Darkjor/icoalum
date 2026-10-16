@@ -7,10 +7,13 @@ export function Placeholder({
   ratio = "16/9",
   label,
   className = "",
+  labelClassName = "",
 }: {
   ratio?: string | number;
   label: string;
   className?: string;
+  /** Ajuste del rotulo (p. ej. sobre foto con velo). */
+  labelClassName?: string;
 }) {
   return (
     <div
@@ -19,7 +22,7 @@ export function Placeholder({
       className={`placeholder-glass relative w-full overflow-hidden ${className}`}
       style={{ aspectRatio: typeof ratio === "number" ? ratio : ratio.replace("/", " / ") }}
     >
-      <p className="absolute inset-x-0 bottom-0 p-3 text-[0.75rem] leading-snug text-text-2 md:p-4">
+      <p className={`absolute inset-x-0 bottom-0 p-3 text-[0.75rem] leading-snug text-text-2 md:p-4 ${labelClassName}`}>
         [PENDIENTE CLIENTE] {label}
       </p>
     </div>

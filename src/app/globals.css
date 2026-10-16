@@ -16,6 +16,7 @@
   --accent-hover: #f7a659;
   --on-accent: #0b1a26;
   --ring: #044269;
+  --danger: #a32a1d; /* texto de error de formulario */
 
   /* Extras de la fundacion (no estan en el spec, no cambian el tema) */
   --ink: #0b1a26; /* velo sobre foto */
@@ -42,6 +43,7 @@
     --text-2: #9fadb9;
     --navy: #5c9cc9;
     --ring: #5c9cc9;
+    --danger: #ff9b91;
     /* --accent, --accent-hover y --on-accent no cambian */
 
     --alu: #5b7080;
@@ -68,6 +70,7 @@
   --color-accent-hover: var(--accent-hover);
   --color-on-accent: var(--on-accent);
   --color-ring: var(--ring);
+  --color-danger: var(--danger);
   --color-ink: var(--ink);
   --color-photo: var(--photo);
   --color-alu: var(--alu);
@@ -174,6 +177,24 @@
     linear-gradient(160deg, var(--glass-1) 0%, var(--glass-2) 48%, var(--glass-3) 100%);
 }
 
+/* Marquesina de marcas (la unica del sitio): CSS puro, solo transform */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 48s linear infinite;
+  width: max-content;
+}
+
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track,
+.marquee:focus .marquee-track {
+  animation-play-state: paused;
+}
+
 /* Movimiento reducido: sin paneles, sin desplazamientos, todo visible */
 @media (prefers-reduced-motion: reduce) {
   [data-pane] {
@@ -183,6 +204,21 @@
   [data-reveal] {
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  /* Marquesina estatica: las marcas se acomodan en varias lineas */
+  .marquee-track {
+    animation: none;
+    width: auto;
+  }
+
+  .marquee-track ul {
+    flex-wrap: wrap;
+    row-gap: 1.5rem;
+  }
+
+  .marquee-dup {
+    display: none !important;
   }
 
   *,
